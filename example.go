@@ -65,9 +65,6 @@ func main() {
 
   log.Println("Listening...")
   http.ListenAndServe(":"+port, nil)
-
-
-  log.Println("AFter the call...")
 }
 
 func profile(w http.ResponseWriter, r *http.Request,access_file_handler *os.File) {
