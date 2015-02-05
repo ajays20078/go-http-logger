@@ -2,7 +2,7 @@
 
 
 
-This is a asynchronous non-blocking logger for go HTTP Server which logs the requests in the below format
+go_http_logger is a asynchronous non-blocking logger for go HTTP Server which logs the requests in the below format
 
 **%YYYY/MM/DD% %HH:MM:SS% %VirtualHost:Port% %ClientHost:Port% "%HttpMethod% %URL?Paramaters% %HttpVersion%" %HttpReturnCode% %ResponseByteSize% "%HttpClient%" %ResponseTime%**
 
