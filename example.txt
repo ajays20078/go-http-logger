@@ -1,9 +1,10 @@
-package main
+/*package main
 
 import (
 	"flag"
 	"github.com/ajays20078/go-ini"
 	"github.com/gorilla/mux"
+	"github.com/ajays20078/go-http-logger
 	"log"
 	"net"
 	"net/http"
@@ -40,26 +41,19 @@ func main() {
 	}
 	defer access_file_handler.Close()
 	rtr := mux.NewRouter()
-	rtr.HandleFunc("/user/{name:[a-z]+}/profile", func(w http.ResponseWriter, r *http.Request) {
-		profile(w, r, access_file_handler)
-	}).Host(virtual_server).Methods("GET")
+	rtr.HandleFunc("/user/{name:[a-z]+}/profile", profile)
 	http.Handle("/", rtr)
 	log.Println("Listening...")
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+port, logger.Logger(http.DefaultServeMux,access_file_handler))
 }
 
 func profile(w http.ResponseWriter, r *http.Request, access_file_handler *os.File) {
-	start_time := time.Now().UnixNano()
-	myobj= New()
 	params := mux.Vars(r)
 	name := params["name"]
 	return_string := "Hello " + name
 	ip, port, _ := net.SplitHostPort(r.RemoteAddr)
 	return_string = return_string + "\t IP is" + ip + ":" + port
-	http_return_status := 200
 	w.Write([]byte(return_string))
-	defer http_logger.Log_line(r, http_return_status, return_string, access_file_handler, start_time, time.Now().UnixNano())
-
 }
 
-
+*/
