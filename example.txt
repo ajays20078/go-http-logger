@@ -9,7 +9,7 @@ import (
 	"net"
 	"net/http"
 	"os"
-	"time"
+	
 )
 
 func check(e error) {
@@ -41,13 +41,13 @@ func main() {
 	}
 	defer access_file_handler.Close()
 	rtr := mux.NewRouter()
-	rtr.HandleFunc("/user/{name:[a-z]+}/profile", profile)
+	rtr.HandleFunc("/user/{name:[a-z]+}/profile", profile).Host(virtual_server)
 	http.Handle("/", rtr)
 	log.Println("Listening...")
-	http.ListenAndServe(":"+port, logger.Logger(http.DefaultServeMux,access_file_handler))
+	http.ListenAndServe(":"+port, httpLogger.WriteLog(http.DefaultServeMux,access_file_handler))
 }
 
-func profile(w http.ResponseWriter, r *http.Request, access_file_handler *os.File) {
+func profile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
 	return_string := "Hello " + name
