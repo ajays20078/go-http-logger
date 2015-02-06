@@ -1,4 +1,4 @@
-package http_logger
+/*package http_logger
 
 import (
 	"flag"
@@ -60,3 +60,5 @@ func profile(w http.ResponseWriter, r *http.Request, access_file_handler *os.Fil
 	defer http_logger.Log_line(r, http_return_status, return_string, access_file_handler, start_time, time.Now().UnixNano())
 
 }
+
+*/
