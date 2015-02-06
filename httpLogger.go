@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// LogLine functions calls logLineAsync as a goroutine to Log to Disk Asynchronously and returns immediately so that requests are not blocked on Disk Write.
+// LogLine function calls logLineAsync as a goroutine to Log to Disk Asynchronously and returns immediately so that requests are not blocked on Disk Write.
 // It take http request, return status ,return string ,filehandler to log to, start time and end time of the request as arguments.
 func LogLine(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) int {
 	go logLineAsync(request, returnStatus, returnString, fileHandler, startTime, endTime)
