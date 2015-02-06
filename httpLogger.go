@@ -27,7 +27,7 @@ func (w *statusWriter) Write(b []byte) (int, error) {
 	return w.ResponseWriter.Write(b)
 }
 
-// WriteLog Logs the Http Status for a request into fileHandler
+// WriteLog Logs the Http Status for a request into fileHandler and returns a httphandler function which is a wrapper to log the requests.
 // Syntax : http.ListenAndServe(Virtual_Host+":"+port, httpLogger.WriteLog(http.DefaultServeMux,fileHandler))
 func WriteLog(handle http.Handler,fileHandler *os.File) http.HandlerFunc {
 	logger := log.New(fileHandler, "", 0)
