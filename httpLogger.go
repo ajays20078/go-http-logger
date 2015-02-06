@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// Log the http request info and returnStatus/Time to fileHandler
+
 func LogLine(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) int {
 	go logLineAsync(request, returnStatus, returnString, fileHandler, startTime, endTime)
 	return 0
