@@ -3,7 +3,6 @@ package http_logger
 import (
 	"flag"
 	"github.com/ajays20078/go-ini"
-	"github.com/ajays20078/go_http_logger"
 	"github.com/gorilla/mux"
 	"log"
 	"net"
