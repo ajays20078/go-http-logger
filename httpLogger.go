@@ -7,12 +7,15 @@ import (
 	"strconv"
 )
 
-// LogLine functions logs  the http request info and returnStatus/Time to fileHandler
+// LogLine functions calls the async function to Log to Disk as a goroutine and returns imeediately so that requests are not blocked on Disk Write.
+// It take http request, return status ,return string ,filehandler to log to, start time and end time of the request as arguments.
 func LogLine(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) int {
 	go logLineAsync(request, returnStatus, returnString, fileHandler, startTime, endTime)
 	return 0
 }
 
+
+//logLineAsync logs to disk asynchronously.
 func logLineAsync(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) {
 	timeDiff := (float64(endTime) - float64(startTime)) / 1000000.0
 	timeTakenString := strconv.FormatFloat(timeDiff, 'f', 3, 64)
