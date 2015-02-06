@@ -1,4 +1,4 @@
-package http_logger
+package httpLogger
 
 import (
 	"log"
@@ -7,20 +7,20 @@ import (
 	"strconv"
 )
 
-func Log_line(request *http.Request, return_status int, return_string string, file_handler *os.File, start_time int64, end_time int64) int {
-	go Log_line_async(request, return_status, return_string, file_handler, start_time, end_time)
+func LogLine(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) int {
+	go logLineAsync(request, returnStatus, returnString, fileHandler, startTime, endTime)
 	return 0
 }
 
-func Log_line_async(request *http.Request, return_status int, return_string string, file_handler *os.File, start_time int64, end_time int64) {
-	time_diff := (float64(end_time) - float64(start_time)) / 1000000.0
-	time_taken_string := strconv.FormatFloat(time_diff, 'f', 3, 64)
-	log.SetOutput(file_handler)
-	http_return_status := strconv.FormatInt(int64(return_status), 10)
-	response_length := strconv.FormatInt(int64(len(return_string)), 10)
+func logLineAsync(request *http.Request, returnStatus int, returnString string, fileHandler *os.File, startTime int64, endTime int64) {
+	timeDiff := (float64(endTime) - float64(startTime)) / 1000000.0
+	timeTakenString := strconv.FormatFloat(timeDiff, 'f', 3, 64)
+	log.SetOutput(fileHandler)
+	httpReturnStatus := strconv.FormatInt(int64(returnStatus), 10)
+	responseLength := strconv.FormatInt(int64(len(returnString)), 10)
 	if request.URL.RawQuery != "" {
-		log.Println(request.Host + " " + request.RemoteAddr + " \"" + request.Method + " " + request.URL.Path + "?" + request.URL.RawQuery + " " + request.Proto + "\"" + " " + http_return_status + " " + response_length + " " + "\"" + request.Header.Get("User-Agent") + "\"" + " " + time_taken_string)
+		log.Println(request.Host + " " + request.RemoteAddr + " \"" + request.Method + " " + request.URL.Path + "?" + request.URL.RawQuery + " " + request.Proto + "\"" + " " + httpReturnStatus + " " + responseLength + " " + "\"" + request.Header.Get("User-Agent") + "\"" + " " + timeTakenString)
 	} else {
-		log.Println(request.Host + " " + request.RemoteAddr + " \"" + request.Method + " " + request.URL.Path + " " + request.Proto + "\"" + " " + http_return_status + " " + response_length + " " + "\"" + request.Header.Get("User-Agent") + "\"" + " " + time_taken_string)
+		log.Println(request.Host + " " + request.RemoteAddr + " \"" + request.Method + " " + request.URL.Path + " " + request.Proto + "\"" + " " + httpReturnStatus + " " + responseLength + " " + "\"" + request.Header.Get("User-Agent") + "\"" + " " + timeTakenString)
 	}
 }
