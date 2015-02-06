@@ -57,6 +57,6 @@ func profile(w http.ResponseWriter, r *http.Request, access_file_handler *os.Fil
 	return_string = return_string + "\t IP is" + ip + ":" + port
 	http_return_status := 200
 	w.Write([]byte(return_string))
-	defer go_http_logger.Log_line(r, http_return_status, return_string, access_file_handler, start_time, time.Now().UnixNano())
+	defer http_logger.Log_line(r, http_return_status, return_string, access_file_handler, start_time, time.Now().UnixNano())
 
 }
