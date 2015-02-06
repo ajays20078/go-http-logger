@@ -1,3 +1,5 @@
+package http_logger
+
 import (
 	"flag"
 	"github.com/ajays20078/go-ini"
